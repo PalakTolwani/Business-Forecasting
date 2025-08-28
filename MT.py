@@ -12,6 +12,7 @@ st.title("🧵 Cloth Shop Sales Dashboard")
 # File uploader
 uploaded_file = st.file_uploader("📂 Upload your dataset (CSV)", type=["csv"])
 
+
 if uploaded_file is not None:
     # Load data
     df = pd.read_csv(uploaded_file)
@@ -210,7 +211,8 @@ if uploaded_file is not None:
             st.warning("⚠️ Minimum K must be less than Maximum K.")
     else:
         st.warning("⚠️ No numeric columns available for clustering.")
-
+else:
+    df = pd.read_csv("DataSet.csv")
 
 # st_app_model.py
 
@@ -313,7 +315,7 @@ if uploaded_file is not None:
     st.write("**XGB MSE:**", round(mean_squared_error(y_test, y_pred_xgb), 4))
 
 else:
-    st.warning("📎 Please upload a CSV file with 'date' and 'sales' columns to continue.")
+    df = pd.read_csv("DataSet.csv")
 
 st.subheader("📈 Future Sales Prediction (Next 10 Data Points)")
 if 'X_test' in locals():
